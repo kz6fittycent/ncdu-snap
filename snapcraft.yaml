@@ -1,5 +1,5 @@
 name: ncdu # check to see if it's available
-version: 'git' 
+adopt-info: ncdu
 summary: ncdu (NCurses Disk Usage) is a curses-based version of the well-known 'du' # 79 char long summary
 description: |
   ncdu (NCurses Disk Usage) is a curses-based version of the well-known 'du', and provides a fast way to see what directories are using your disk space.
@@ -9,6 +9,8 @@ confinement: strict # use 'strict' once you have the right plugs
 architectures:
 - build-on: amd64
 - build-on: i386
+
+license: MIT
 
 apps:
   ncdu:
@@ -27,6 +29,10 @@ parts:
     source: https://github.com/DataDrake/ncdu
     source-type: git
     plugin: autotools
+    
+    override-pull: |
+      snapcraftctl pull
+      snapcraftctl set-version "$(git describe --tags | sed 's/^v//')"
     
     build-packages:
       - perl
