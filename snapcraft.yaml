@@ -1,0 +1,41 @@
+name: ncdu # check to see if it's available
+version: 'git' 
+summary: ncdu (NCurses Disk Usage) is a curses-based version of the well-known 'du' # 79 char long summary
+description: |
+  ncdu (NCurses Disk Usage) is a curses-based version of the well-known 'du', and provides a fast way to see what directories are using your disk space.
+grade: stable # must be 'stable' to release into candidate/stable channels
+confinement: strict # use 'strict' once you have the right plugs
+
+architectures:
+- build-on: amd64
+- build-on: i386
+
+apps:
+  ncdu:
+    aliases: 
+      - ncdu
+    command: ncdu
+    plugs:
+      - home
+      - system-files
+      - removable-media
+      - personal-files
+      - mount-observe
+     
+parts: 
+  ncdu:
+    source: https://github.com/DataDrake/ncdu
+    source-type: git
+    plugin: autotools
+    
+    build-packages:
+      - perl
+      - autoconf
+      # - autotools
+      - pkg-config
+      - libncurses5-dev
+      
+    # prepare: ['autoreconf -i']
+      
+    configflags: 
+      - "--prefix=/usr"
