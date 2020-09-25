@@ -20,10 +20,11 @@ apps:
     command: ncdu
     plugs:
       - home
-      - system-files
+#      - system-files
       - removable-media
-      - personal-files
+#      - personal-files
       - mount-observe
+      - system-backup # testing 
      
 parts: 
   ncdu:
