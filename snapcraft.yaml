@@ -1,12 +1,12 @@
-name: ncdu # check to see if it's available
+name: ncdu 
 adopt-info: ncdu
 summary: ncdu (NCurses Disk Usage) is a curses-based version of the well-known 'du' # 79 char long summary
 description: |
   ncdu (NCurses Disk Usage) is a curses-based version of the well-known 'du', and provides a fast way to see what directories are using your disk space.
 
 base: core18
-grade: stable # must be 'stable' to release into candidate/stable channels
-confinement: strict # use 'strict' once you have the right plugs
+grade: stable 
+confinement: strict 
 license: MIT
 
 architectures:
