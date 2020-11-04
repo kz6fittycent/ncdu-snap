@@ -3,7 +3,13 @@ adopt-info: ncdu
 summary: ncdu (NCurses Disk Usage) is a curses-based version of the well-known 'du' # 79 char long summary
 description: |
   ncdu (NCurses Disk Usage) is a curses-based version of the well-known 'du', and provides a fast way to see what directories are using your disk space.
-
+  After installation, run the following commands:
+  
+    sudo snap connect ncdu:removable-media
+    sudo snap connect ncdu:mount-observe
+    sudo snap connect ncdu:system-backup
+    
+    
 base: core18
 grade: stable 
 confinement: strict 
@@ -20,9 +26,7 @@ apps:
     command: ncdu
     plugs:
       - home
-#      - system-files
       - removable-media
-#      - personal-files
       - mount-observe
       - system-backup # testing 
      
@@ -39,11 +43,8 @@ parts:
     build-packages:
       - perl
       - autoconf
-      # - autotools
       - pkg-config
       - libncurses5-dev
-      
-    # prepare: ['autoreconf -i']
       
     configflags: 
       - "--prefix=/usr"
